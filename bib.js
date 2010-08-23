@@ -1,7 +1,7 @@
 // helper: display bib item (will go)
 //
 function display(item) {
-  alert("Bibliography Item\r\n" + 
+  alert("Bibliography Item\r\n" +
     "Author\t\t : " + item.author + "\r\n"+
     "Title\t\t\t : " + item.title + "\r\n"+
     "Publisher\t\t : " + item.publisher + "\r\n"+
@@ -18,14 +18,14 @@ function display(item) {
  */
 function BibliographyItem()
 {
-  var extractField = function(name) {
+  function extractField (name) {
     return $('td:contains('+name+')').next().text().trim()
   }
 
   var publisherYear = (function() {
-    publisher = extractField("Publisher/year") 
-    year = '????'
-    arr = /^(.*),[\s]*([0-9]{0,4})\.?$/(publisher)
+    var publisher = extractField("Publisher/year")
+    var year = '????'
+    var arr = /^(.*),[\s]*([0-9]{0,4})\.?$/(publisher)
     if (arr && arr.length >= 3)
     {
       publisher = arr[1]
@@ -46,13 +46,15 @@ function BibliographyItem()
 
 // load 'er up.
 (function() {
-  jqURL = "http://localhost/p/bibliography/jquery-1.4.2.js"
-  head = document.getElementsByTagName("head")[0],
-  script = document.createElement("script")
-  script.type = "text/javascript"
-  script.src = jqURL
-  head.appendChild(script)
-  script.onload = function() {
-    display(new BibliographyItem())
+    var jqURL = "http://localhost/p/bibliography/jquery-1.4.2.js"
+    var head = document.getElementsByTagName("head")[0],
+    var script = document.createElement("script")
+    script.type = "text/javascript"
+    script.src = jqURL
+    head.appendChild(script)
+    script.onload = function() {
+      display(new BibliographyItem())
+    }
+    script.removeChild(head)
   }
 })();
