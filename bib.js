@@ -45,7 +45,7 @@ function BibliographyItem()
 }
 
 // load 'er up.
-(function() {
+if (typeof jQuery === 'undefined'){ (function() {
     var jqURL = "http://localhost/p/bibliography/jquery-1.4.2.js"
     var head = document.getElementsByTagName("head")[0],
     var script = document.createElement("script")
@@ -57,4 +57,4 @@ function BibliographyItem()
     }
     script.removeChild(head)
   }
-})();
+)();}
